@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Opava News</title>
+</head>
+
+<nav style="position: fixed;top: 0;width: 100%; border-bottom: 1px solid gainsboro; background: #ffffff">
+    <ul>
+        <a style="text-decoration: none; margin-right: 3em;" href="/polls">HOME</a>
+        <a style="text-decoration: none; margin-right: 3em;" href="/polls/articles">Articles</a>
+    </ul>
+</nav>
+<body style="max-width: 60rem; margin-left: auto; margin-right: auto; font-family: Arial,serif; margin-top: 4em">
+
+<H1>Welcome to Opava News</H1>
+<a href="{% url "articles" %}">Our articles</a>
+
+<h3>latest articles:</h3>
+
+<div style="display: flex">
+    {% for article in latest_articles %}
+        <a href="/polls/articles/{{ article.id }}/" style="width: 33%; text-decoration: none; color: black">
+            <div style="padding: 1em; margin: .5em; border: 1px solid gainsboro; border-radius: 1em">
+                {{ article.title }} <br>
+                {{ article.author }}<br>
+                <hr>
+                {{ article.content }} <br>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+<h3>Top authors:</h3>
+<ul>
+    {% for user in users %}
+        <li>
+            <a href="user_detail/{{ user.nickname }}">
+                {{ user.nickname }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
