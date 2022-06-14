@@ -1,19 +1,15 @@
-<nav style="position: fixed;top: 0;width: 100%; border-bottom: 1px solid gainsboro; background: #ffffff">
-    <ul>
-        <a style="text-decoration: none; margin-right: 3em;" href="/polls">HOME</a>
-        <a style="text-decoration: none; margin-right: 3em;" href="/polls/articles">Articles</a>
-    </ul>
-</nav>
+{% include "polls/nav.html" %}
+
 <body style="max-width: 60rem; margin-left: auto; margin-right: auto; font-family: Arial,serif; margin-top: 4em">
 {% if article %}
     <h1>{{ article.title }}</h1> <br>
-    <h3><a href="/polls/user_detail/{{ article.author.nickname }}">{{ article.author }}</a></h3> <br>
+    <h3><a href="/users/user_detail/{{ article.author.nickname }}">{{ article.author }}</a></h3> <br>
     {{ article.content }}
     <h3 style="margin-top: 8em; margin-bottom: 0">Comments:</h3>
     <hr>
     {% for comment in comments %}
         <br><br>
-        <a href="/polls/user_detail/{{ comment.author.nickname }}">{{ comment.author.nickname }}</a>:
+        <a href="/users/user_detail/{{ comment.author.nickname }}">{{ comment.author.nickname }}</a>:
         {{ comment.content }}
     {% endfor %}
 {% else %}

@@ -53,3 +53,12 @@ def user(request, nickname):
         "articles": articleReq
     }
     return HttpResponse(template.render(context, request))
+
+
+def users(request):
+    users = User.objects.order_by('nickname')
+    template = loader.get_template('polls/users_view.html')
+    context = {
+        "users": users
+    }
+    return HttpResponse(template.render(context, request))
